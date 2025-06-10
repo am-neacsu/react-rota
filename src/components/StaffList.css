@@ -1,0 +1,53 @@
+.page-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .form-container {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  input, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .add-button {
+    padding: 10px 20px;
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .add-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .staff-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .staff-table th,
+  .staff-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .delete-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "1747330682882",
+    "name": "test",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [
+        "Sunday",
+        "Saturday"
+      ],
+      "preferredShift": "",
+      "partnerShift": "",
+      "fixedShiftEnabled": true,
+      "fixedShiftId": "1746859742599"
+    },
+    "subdepartmentId": "sub-001",
+    "contractedHours": "20"
+  },
+  {
+    "id": "1747633217016",
+    "name": "1234",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [
+        "Monday",
+        "Tuesday"
+      ],
+      "preferredShift": "",
+      "partnerShift": "",
+      "fixedShiftEnabled": true,
+      "fixedShiftId": "1746859742599"
+    },
+    "subdepartmentId": "sub-002"
+  },
+  {
+    "id": "1747682609372",
+    "name": "cucu",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [
+        "Thursday",
+        "Wednesday"
+      ],
+      "preferredShift": "day",
+      "partnerShift": "",
+      "fixedShiftEnabled": true,
+      "fixedShiftId": "1746778924723"
+    },
+    "subdepartmentId": "1747682575893"
+  },
+  {
+    "id": "1747682614885",
+    "name": "cucu bau",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [],
+      "preferredShift": "",
+      "partnerShift": "",
+      "fixedShiftEnabled": false,
+      "fixedShiftId": ""
+    },
+    "subdepartmentId": "sub-001",
+    "contractedHours": "40"
+  },
+  {
+    "id": "1747923870173",
+    "name": "test 123",
+    "department": "new department",
+    "preferences": {
+      "daysOff": [],
+      "preferredShift": "day",
+      "partnerShift": "",
+      "fixedShiftEnabled": false,
+      "fixedShiftId": ""
+    },
+    "contractedHours": "30",
+    "subdepartmentId": ""
+  },
+  {
+    "id": "1748327515054",
+    "name": "new",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [],
+      "preferredShift": "",
+      "partnerShift": ""
+    },
+    "subdepartmentId": "sub-001",
+    "contractedHours": "30"
+  },
+  {
+    "id": "1748328225720",
+    "name": "hy",
+    "department": "Gaming",
+    "preferences": {
+      "daysOff": [
+        "Saturday",
+        "Sunday"
+      ],
+      "preferredShift": "",
+      "partnerShift": "",
+      "fixedShiftEnabled": true,
+      "fixedShiftId": "1746859742599"
+    },
+    "subdepartmentId": "sub-001",
+    "contractedHours": "30"
+  },
+  {
+    "id": "1749158406112",
+    "name": "neacsu",
+    "department": "new department",
+    "preferences": {
+      "daysOff": [],
+      "preferredShift": "",
+      "partnerShift": ""
+    }
+  },
+  {
+    "id": "1749161352575",
+    "name": "1234546565",
+    "department": "new department",
+    "preferences": {
+      "daysOff": [],
+      "preferredShift": "",
+      "partnerShift": ""
+    }
+  }
+]
