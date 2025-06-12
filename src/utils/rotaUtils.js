@@ -9,14 +9,19 @@ export function generateRotaForDepartment(users = [], shifts = [], weekStartDate
     const userId = user.id;
     const assigned = {};
     const hoursNeeded = parseInt(user.contractedHours || 40, 10);
-    const daysOff = user.daysOff || [];
-    const shiftPref = user.preferredShift;
+
+    const prefs = user.preferences || {};
+    const daysOff = prefs.daysOff || [];
+    const shiftPref = prefs.preferredShift;
+    const fixedShiftEnabled = prefs.fixedShiftEnabled;
+    const fixedShiftId = prefs.fixedShiftId;
+
     let totalHours = 0;
 
     let validShifts = shifts;
 
-    if (user.fixedShift) {
-      validShifts = shifts.filter(s => s.id === user.fixedShift);
+    if (fixedShiftEnabled && fixedShiftId) {
+      validShifts = shifts.filter(s => s.id === fixedShiftId);
     } else if (shiftPref === 'day') {
       validShifts = shifts.filter(s => parseInt(s.start.split(':')[0], 10) <= 14);
     } else if (shiftPref === 'night') {
