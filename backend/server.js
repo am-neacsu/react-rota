@@ -2,6 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const usersRouter = require('./routes/users');
+const departmentsRouter = require('./routes/departments');
+const shiftsRouter = require('./routes/shifts');
+const subdepartmentsRouter = require('./routes/subdepartments');
+const rotaRouter = require('./routes/rota');
+
 const app = express();
 
 const PORT = 4000;
@@ -30,19 +36,7 @@ function writeFile(filePath, data) {
 
 // =================== API ROUTES =================== //
 
-// GET all data
-app.get('/api/users', (_, res) => {
-  readFile('users.json').then(data => res.json(data));
-});
-
-app.get('/api/departments', (_, res) => {
-  readFile('departments.json').then(data => res.json(data));
-});
-
-app.get('/api/shifts', (_, res) => {
-  readFile('shifts.json').then(data => res.json(data));
-});
-
+// Legacy read-only routes
 app.get('/api/rota', (_, res) => {
   readFile('rota.json').then(data => res.json(data));
 });
@@ -51,31 +45,12 @@ app.get('/api/settings', (_, res) => {
   readFile('settings.json').then(data => res.json(data));
 });
 
-app.get('/api/subdepartments', (_, res) => {
-  readFile('subdepartments.json').then(data => res.json(data));
-});
-
-// PUT to update rota.json
-app.put('/api/rota', (req, res) => {
-  const rota = req.body;
-  writeFile('rota.json', JSON.stringify(rota, null, 2))
-    .then(() => res.json({ success: true }))
-    .catch(err => {
-      console.error('❌ Failed to write rota file:', err);
-      res.status(500).json({ error: 'Failed to write rota file' });
-    });
-});
-
-// Also allow POST to update rota.json
-app.post('/api/rota', (req, res) => {
-  const rota = req.body;
-  writeFile('rota.json', JSON.stringify(rota, null, 2))
-    .then(() => res.json({ success: true }))
-    .catch(err => {
-      console.error('❌ Failed to write rota file:', err);
-      res.status(500).json({ error: 'Failed to write rota file' });
-    });
-});
+// Mount routers
+app.use('/api/users', usersRouter);
+app.use('/api/departments', departmentsRouter);
+app.use('/api/shifts', shiftsRouter);
+app.use('/api/subdepartments', subdepartmentsRouter);
+app.use('/api/rota', rotaRouter);
 
 // =================================================== //
 
