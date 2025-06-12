@@ -7,8 +7,12 @@ const filePath = path.join(__dirname, '../data/rota.json');
 
 // Load existing rota data
 function loadRota() {
-  if (!fs.existsSync(filePath)) return [];
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  if (!fs.existsSync(filePath)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch {
+    return {};
+  }
 }
 
 // Save rota data
@@ -16,23 +20,51 @@ function saveRota(data) {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 }
 
-// POST: save rota
+// GET: full rota
+router.get('/', (req, res) => {
+  try {
+    const rota = loadRota();
+    res.json(rota);
+  } catch (err) {
+    console.error('Failed to load rota:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 router.post('/', (req, res) => {
   try {
-    const { rota, week, department } = req.body;
-    if (!rota || !week || !department) {
-      return res.status(400).json({ error: 'Missing rota, week, or department' });
+    const { rota, week } = req.body;
+    if (!rota || !week) {
+      return res.status(400).json({ error: 'Missing rota or week' });
     }
 
     const all = loadRota();
-    const filtered = all.filter(r => r.week !== week || r.department !== department);
+    const weekData = rota[week];
+    if (!weekData) {
+      return res.status(400).json({ error: 'Invalid week data' });
+    }
 
-    filtered.push({ rota, week, department, savedAt: new Date().toISOString() });
-    saveRota(filtered);
+    all[week] = { ...(all[week] || {}), ...weekData };
+    saveRota(all);
 
     res.json({ success: true });
   } catch (err) {
     console.error('Failed to save rota:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.put('/', (req, res) => {
+  try {
+    const rota = req.body;
+    if (!rota || typeof rota !== 'object') {
+      return res.status(400).json({ error: 'Invalid rota data' });
+    }
+
+    saveRota(rota);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('Failed to replace rota:', err);
     res.status(500).json({ error: 'Server error' });
   }
 });
